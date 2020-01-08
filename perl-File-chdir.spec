@@ -4,12 +4,13 @@
 #
 Name     : perl-File-chdir
 Version  : 0.1010
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/File-chdir-0.1010.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/File-chdir-0.1010.tar.gz
 Summary  : 'a more sensible way to change directories'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
+Requires: perl-File-chdir-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -28,8 +29,18 @@ Requires: perl-File-chdir = %{version}-%{release}
 dev components for the perl-File-chdir package.
 
 
+%package perl
+Summary: perl components for the perl-File-chdir package.
+Group: Default
+Requires: perl-File-chdir = %{version}-%{release}
+
+%description perl
+perl components for the perl-File-chdir package.
+
+
 %prep
 %setup -q -n File-chdir-0.1010
+cd %{_builddir}/File-chdir-0.1010
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -65,8 +76,11 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/File/chdir.pm
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/File::chdir.3
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/File/chdir.pm
