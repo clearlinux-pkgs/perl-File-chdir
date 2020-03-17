@@ -4,12 +4,13 @@
 #
 Name     : perl-File-chdir
 Version  : 0.1010
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/File-chdir-0.1010.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/File-chdir-0.1010.tar.gz
 Summary  : 'a more sensible way to change directories'
 Group    : Development/Tools
-License  : Artistic-1.0-Perl
+License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
+Requires: perl-File-chdir-license = %{version}-%{release}
 Requires: perl-File-chdir-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
@@ -27,6 +28,14 @@ Requires: perl-File-chdir = %{version}-%{release}
 
 %description dev
 dev components for the perl-File-chdir package.
+
+
+%package license
+Summary: license components for the perl-File-chdir package.
+Group: Default
+
+%description license
+license components for the perl-File-chdir package.
 
 
 %package perl
@@ -64,6 +73,8 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-File-chdir
+cp %{_builddir}/File-chdir-0.1010/LICENSE %{buildroot}/usr/share/package-licenses/perl-File-chdir/a587d626817be6e888f4a52291d03415d3d02b81
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -81,6 +92,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %defattr(-,root,root,-)
 /usr/share/man/man3/File::chdir.3
 
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-File-chdir/a587d626817be6e888f4a52291d03415d3d02b81
+
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/File/chdir.pm
+/usr/lib/perl5/vendor_perl/5.30.2/File/chdir.pm
