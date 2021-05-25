@@ -4,7 +4,7 @@
 #
 Name     : perl-File-chdir
 Version  : 0.1010
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/File-chdir-0.1010.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/File-chdir-0.1010.tar.gz
 Summary  : 'a more sensible way to change directories'
